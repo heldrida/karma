@@ -24,7 +24,7 @@ html, body {
 #wrapper {
 	height: 300%;
 	position: relative;
-	top: 0;
+	top: 0%;
 	@include transition(top 1s ease-in-out);
 }
 .panel {
@@ -84,4 +84,11 @@ button.play {
 	text-transform: uppercase;
 	letter-spacing: 0.65rem;
 	color: $dark-yellow;
+}
+.clickable {
+	cursor: pointer;
+	@include transition(opacity 0.4s ease-in-out);
+}
+.clickable:hover {
+	opacity: 0.5;
 }
