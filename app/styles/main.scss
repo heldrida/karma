@@ -19,16 +19,21 @@ html {
 html, body {
 	height: 100%;
 	width: 100%;
+	overflow: hidden;
 }
 #wrapper {
 	height: 300%;
+	position: relative;
+	top: 0;
+	@include transition(top 1s ease-in-out);
 }
 .panel {
 
 	height: 33.333333%;
 
 	section {
-
+		height: 100%;
+		position: relative;
 	}
 }
 .panel-a {
@@ -61,23 +66,22 @@ button.play {
 	background-image: url(../images/arrow.png);
 	background-repeat: no-repeat;
 	background-position: center;
-	width: 142px;
+	width: 134px;
 	padding: 0 0 60px;
 	position: absolute;
 	bottom: 0;
 	left: 50%;
-	@include transform(translateX(-71px) translateY(10px));
+	@include transform(translateX(-67px) translateY(10px));
 }
 .arrow p {
-	@include font-size(12);
+	@include font-size(20);
 	color: $white;
 	text-transform: uppercase;font-family: $font-gothic;
 }
 #foo {
 	font-family: $font-gothic;
-	@include font-size(40);
+	@include font-size(68);
 	text-transform: uppercase;
-	letter-spacing: 0.6rem;
+	letter-spacing: 0.65rem;
 	color: $dark-yellow;
-	@include transform(scale(1,1.6));
 }
