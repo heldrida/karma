@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		queue: [],
 
+		timelinePoints: document.getElementsByClassName('point'),
+
 		run: function(delta){
 
 			var self = this;
@@ -120,6 +122,16 @@ document.addEventListener('DOMContentLoaded', function () {
 				self.run(delta);
 
 			});
+
+			for (var i = 0; i < self.timelinePoints.length; i++){
+
+				self.timelinePoints.item(i).addEventListener('click', function(e){
+
+					self.wrapper.style.top = parseFloat(this.getAttribute('data-index') * -100) + '%';
+
+				});
+
+			}
 
 		}
 
