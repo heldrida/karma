@@ -132,6 +132,7 @@ button.play {
 		display: block;
 		height: 14px;
 		width: 14px;
+		@include transition(all 0.2s linear);
 	}
 	.point::before {
 		position: absolute;
@@ -144,14 +145,19 @@ button.play {
 		border-radius: 100%;
 		opacity: .7;
 	}
-	.point.active::before,
-	.point:hover::before {
-		left: 0;
+	.point.active,
+	.point:hover {
+		left: 1px;
 		top: 0;
-		height: 14px;
-		width: 14px;
-		border: 1px solid $white;
+		@include transform(scale(2));
 		background: transparent;
 	}
 
+}
+#timeline.index2 .point::before {
+	@include transition(all 2s linear);
+	@include transition-delay(0.4s);
+}
+#timeline.index2 .point::before {
+	background-color: #333;
 }

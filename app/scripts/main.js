@@ -3,6 +3,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
 	var myScroll = {
+
+		index: 0,
 		
 		wrapper: document.getElementById('wrapper'),
 
@@ -44,6 +46,38 @@ document.addEventListener('DOMContentLoaded', function () {
 			return delta;
 		},
 
+		setTimeline: function(){
+
+			var self = this;
+
+			var timeline = document.getElementById('timeline');
+
+			timeline.className = '';
+			timeline.className += 'index' + self.index;
+
+			var elements = document.getElementsByClassName('point');
+
+			for (var i = 0; i < elements.length; i++){
+
+				elements.item(i).className = elements.item(i).className.replace('active', '');
+
+				if (self.index === i){
+
+					elements.item(i).className += ' ' + 'active';
+
+				}
+
+			}
+
+		},
+
+		setIndex: function(){
+
+			var self = this;
+			self.index = Math.abs(parseFloat(self.wrapper.style.top || 0)) / 100;
+
+		},
+
 		init: function(){
 
 			var self = this;
@@ -56,6 +90,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 				self.wrapper.addEventListener(transition, function(e){
 					self.mouseWheelLock = false;
+					self.setIndex();
+					self.setTimeline();
 				}, false);
 
 			});

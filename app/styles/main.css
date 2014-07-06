@@ -133,7 +133,10 @@ button.play {
     margin: 20px auto;
     display: block;
     height: 14px;
-    width: 14px; }
+    width: 14px;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    transition: all 0.2s linear; }
   #timeline .point::before {
     position: absolute;
     left: 3px;
@@ -144,10 +147,23 @@ button.play {
     background-color: #efefef;
     border-radius: 100%;
     opacity: 0.7; }
-  #timeline .point.active::before, #timeline .point:hover::before {
-    left: 0;
+  #timeline .point.active, #timeline .point:hover {
+    left: 1px;
     top: 0;
-    height: 14px;
-    width: 14px;
-    border: 1px solid #efefef;
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    -ms-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2);
     background: transparent; }
+
+#timeline.index2 .point::before {
+  -webkit-transition: all 2s linear;
+  -moz-transition: all 2s linear;
+  transition: all 2s linear;
+  -webkit-transition-delay: 0.4s;
+  -moz-transition-delay: 0.4s;
+  transition-delay: 0.4s; }
+
+#timeline.index2 .point::before {
+  background-color: #333; }
