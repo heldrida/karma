@@ -152,6 +152,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			self.resizeVideo();
 
+			window.addEventListener('resize', function(){
+				self.resizeVideo();
+			});
+
 		}
 
 	};
