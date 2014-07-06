@@ -48,7 +48,7 @@ html, body {
 	background-color: $dark-yellow;
 }
 #logo {
-	padding: 30px 0;
+	padding: 30px 0 0;
 	text-align: center;
 }
 #logo img {
@@ -56,22 +56,33 @@ html, body {
 	width: auto;
 	height: auto;
 }
+#video {
+	position: relative;
+}
 button.play {
 	background: none;
 	border: none;
 	margin: 0 auto;
 	display: block;
+	width: 106px;
+	height: 106px;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	@include transform(translateX(-53px) translateY(-53px));
 }
 .arrow {
 	background-image: url(../images/arrow.png);
 	background-repeat: no-repeat;
-	background-position: center;
+	background-position: bottom;
 	width: 134px;
-	padding: 0 0 60px;
+	height: 70px;
+	padding:  0;
+	margin: 0 0 30px 0;
 	position: absolute;
 	bottom: 0;
 	left: 50%;
-	@include transform(translateX(-67px) translateY(10px));
+	@include transform(translateX(-67px));
 }
 .arrow p {
 	@include font-size(20);
@@ -84,6 +95,8 @@ button.play {
 	text-transform: uppercase;
 	letter-spacing: 0.65rem;
 	color: $dark-yellow;
+	margin: 0;
+	padding: 0;
 }
 .clickable {
 	cursor: pointer;

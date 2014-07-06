@@ -74,4 +74,52 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	myScroll.init();
 
+	var resizeManager = {
+
+		logo: document.getElementById('logo'),
+
+		video: document.getElementById('video'),
+
+		delve: document.getElementById('delve'),
+		
+		playBtn: document.getElementById('play'),
+
+		getAbsoluteHeight: function(el) {
+
+		  el = (typeof el === 'string') ? document.querySelector(el) : el;
+
+		  var styles = window.getComputedStyle(el);
+		  var margin = parseFloat(styles['marginTop']) +
+		               parseFloat(styles['marginBottom']);
+
+		  return Math.ceil(el.offsetHeight + margin);
+
+		},
+
+		resizeVideo: function(){
+
+			var self = this;
+
+			var logoHeight = self.getAbsoluteHeight(self.logo);
+			var delveHeight = self.getAbsoluteHeight(self.delve);
+
+			var container = self.getAbsoluteHeight( document.getElementsByClassName('panel')[0] );
+			container = parseFloat(container);		
+
+			self.video.style.height = container - (logoHeight + delveHeight) + 'px';
+
+		},
+
+		init: function(){
+
+			var self = this;
+
+			self.resizeVideo();
+
+		}
+
+	};
+
+	resizeManager.init();
+
 }, false);

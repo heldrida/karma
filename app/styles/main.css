@@ -39,7 +39,7 @@ html, body {
   background-color: #FFD600; }
 
 #logo {
-  padding: 30px 0;
+  padding: 30px 0 0;
   text-align: center; }
 
 #logo img {
@@ -47,26 +47,41 @@ html, body {
   width: auto;
   height: auto; }
 
+#video {
+  position: relative; }
+
 button.play {
   background: none;
   border: none;
   margin: 0 auto;
-  display: block; }
+  display: block;
+  width: 106px;
+  height: 106px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translateX(-53px) translateY(-53px);
+  -moz-transform: translateX(-53px) translateY(-53px);
+  -ms-transform: translateX(-53px) translateY(-53px);
+  -o-transform: translateX(-53px) translateY(-53px);
+  transform: translateX(-53px) translateY(-53px); }
 
 .arrow {
   background-image: url(../images/arrow.png);
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: bottom;
   width: 134px;
-  padding: 0 0 60px;
+  height: 70px;
+  padding: 0;
+  margin: 0 0 30px 0;
   position: absolute;
   bottom: 0;
   left: 50%;
-  -webkit-transform: translateX(-67px) translateY(10px);
-  -moz-transform: translateX(-67px) translateY(10px);
-  -ms-transform: translateX(-67px) translateY(10px);
-  -o-transform: translateX(-67px) translateY(10px);
-  transform: translateX(-67px) translateY(10px); }
+  -webkit-transform: translateX(-67px);
+  -moz-transform: translateX(-67px);
+  -ms-transform: translateX(-67px);
+  -o-transform: translateX(-67px);
+  transform: translateX(-67px); }
 
 .arrow p {
   font-size: 20px;
@@ -81,7 +96,9 @@ button.play {
   font-size: 6.8rem;
   text-transform: uppercase;
   letter-spacing: 0.65rem;
-  color: #FFD600; }
+  color: #FFD600;
+  margin: 0;
+  padding: 0; }
 
 .clickable {
   cursor: pointer;
