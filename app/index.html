@@ -44,7 +44,13 @@
                         <button id="play" class="play clickable" type="submit" name="reel" value="Play">
                           <img src="images/btn-play.png" />
                         </button>
-                        
+
+                        <div id="videoWrapper">
+
+                            <iframe id="vplayer" data-src="//player.vimeo.com/video/45649386?autoplay=1&api=1&player_id=vplayer" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+                        </div>
+
                     </div>
 
                     <div id="delve" class="arrow clickable">
@@ -70,6 +76,7 @@
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/modernizr/modernizr.js"></script>
         <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+        <script src="http://a.vimeocdn.com/js/froogaloop2.min.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 

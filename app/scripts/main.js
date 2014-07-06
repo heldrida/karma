@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		mouseWheelEvent: (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel",
 
+		queue: [],
+
 		run: function(delta){
 
 			var self = this;
@@ -78,6 +80,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		},
 
+		resetQueue: function(){
+
+			var self = this;
+
+			for (var i = 0; i < self.queue.length; i++){
+
+				self.queue[i]();
+
+			}
+
+			self.queue = []; // reset list
+
+		},
+
 		init: function(){
 
 			var self = this;
@@ -92,6 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					self.mouseWheelLock = false;
 					self.setIndex();
 					self.setTimeline();
+					self.resetQueue();
 				}, false);
 
 			});
@@ -109,6 +126,85 @@ document.addEventListener('DOMContentLoaded', function () {
 	};
 
 	myScroll.init();
+
+	var videoPlayer = {
+
+		playBtn: document.getElementById('play'),
+		
+		video: document.getElementById('video'),
+
+		iframe: document.querySelector('#videoWrapper iframe'),
+
+		listenVimeoApi: function(){
+
+			var self = this;
+
+			var player = $f(self.iframe);
+
+			player.addEvent('ready', function() {
+			   player.addEvent('finish', self.reset.bind(self));
+			});
+
+		},
+
+		setSrc: function(){
+
+			var self = this;
+
+			self.iframe.src = self.iframe.getAttribute('data-src');
+
+			self.listenVimeoApi();
+
+		},
+
+		play: function(){
+
+			var self = this;
+
+			self.removePlayBtn();
+
+			setTimeout(function(){
+
+				self.setSrc();
+				
+				myScroll.queue.push(self.reset.bind(self));
+
+			}, 800);
+
+		},
+
+		removePlayBtn: function(){
+
+			var self = this;
+
+			self.playBtn.className += ' ' + 'playing';
+
+		},
+
+		reset: function(){
+
+			var self = this;
+
+			self.playBtn.className = self.playBtn.className.replace('playing', '');
+			self.iframe.src = '';
+
+		},
+
+		init: function(){
+
+			var self = this;
+
+			self.playBtn.addEventListener('click', function(){
+
+				self.play();
+
+			});
+
+		}
+
+	};
+
+	videoPlayer.init();
 
 	var resizeManager = {
 
@@ -132,6 +228,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		},
 
+		resizeVideoIframe: function(){
+
+			var self = this;
+			var video = document.getElementById('video');
+			var videoWrapper = document.getElementById('videoWrapper');
+			var ratio = 9.4 / 16;
+			var videoWidth = parseFloat(window.getComputedStyle(video).width);
+
+			videoWrapper.style.height = ratio * videoWidth + 'px';
+			videoWrapper.style.width = videoWidth + 'px';
+
+		},
+
 		resizeVideo: function(){
 
 			var self = this;
@@ -143,6 +252,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			container = parseFloat(container);		
 
 			self.video.style.height = container - (logoHeight + delveHeight) + 'px';
+
+			self.resizeVideoIframe();
 
 		},
 

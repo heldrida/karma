@@ -76,6 +76,11 @@ html, body {
 #video {
   position: relative; }
 
+#video iframe {
+  width: 100%;
+  height: 95%;
+  padding: 2.5% 0; }
+
 button.play {
   background: none;
   border: none;
@@ -91,6 +96,9 @@ button.play {
   -ms-transform: translateX(-53px) translateY(-53px);
   -o-transform: translateX(-53px) translateY(-53px);
   transform: translateX(-53px) translateY(-53px); }
+
+button.play.playing {
+  opacity: 0; }
 
 /* ARROW */
 .arrow {
