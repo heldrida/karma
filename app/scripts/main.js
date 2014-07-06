@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			window.addEventListener(self.mouseWheelEvent, function(e) {
 
-				var delta = self.normaliseMouseWheel();
+				var delta = self.normaliseMouseWheel(e);
 
 				self.run(delta);
 

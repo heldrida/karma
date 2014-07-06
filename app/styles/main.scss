@@ -1,18 +1,22 @@
 @import 'fonts';
 @import 'bourbon';
 
+/* COLOR VARS */
 $light-grey: #3C3C3C;
 $dark-grey: #272727;
 $dark-yellow: #FFD600;
 $white: #efefef;
 
+/* FONTS VARS */
 $font-gothic: 'alternate_gothic_no2bt', Helvetica, sans-serif;
 
+/* MIXINS */
 @mixin font-size($value){
 	font-size: $value + px;
 	font-size: ($value / 10) + rem;
 }
 
+/* GLOBALS */
 html {
 	font-size: 62.5%;
 }
@@ -21,6 +25,15 @@ html, body {
 	width: 100%;
 	overflow: hidden;
 }
+.clickable {
+	cursor: pointer;
+	@include transition(opacity 0.4s ease-in-out);
+}
+.clickable:hover {
+	opacity: 0.5;
+}
+
+/* WRAPPER */
 #wrapper {
 	height: 300%;
 	position: relative;
@@ -47,6 +60,8 @@ html, body {
 .panel-c {
 	background-color: $dark-yellow;
 }
+
+/* LOGO */
 #logo {
 	padding: 30px 0 0;
 	text-align: center;
@@ -56,6 +71,17 @@ html, body {
 	width: auto;
 	height: auto;
 }
+#karmarama {
+	font-family: $font-gothic;
+	@include font-size(68);
+	text-transform: uppercase;
+	letter-spacing: 0.65rem;
+	color: $dark-yellow;
+	margin: 0;
+	padding: 0;
+}
+
+/* VIDEO */
 #video {
 	position: relative;
 }
@@ -71,6 +97,8 @@ button.play {
 	position: absolute;
 	@include transform(translateX(-53px) translateY(-53px));
 }
+
+/* ARROW */
 .arrow {
 	background-image: url(../images/arrow.png);
 	background-repeat: no-repeat;
@@ -89,19 +117,41 @@ button.play {
 	color: $white;
 	text-transform: uppercase;font-family: $font-gothic;
 }
-#foo {
-	font-family: $font-gothic;
-	@include font-size(68);
-	text-transform: uppercase;
-	letter-spacing: 0.65rem;
-	color: $dark-yellow;
-	margin: 0;
-	padding: 0;
-}
-.clickable {
-	cursor: pointer;
-	@include transition(opacity 0.4s ease-in-out);
-}
-.clickable:hover {
-	opacity: 0.5;
+
+/* TIMELINE */
+#timeline {
+	@include transform(translateY(-50%));
+	position: absolute;
+	z-index: 3;
+	right: 35px;
+	top: 50%;
+
+	.point {
+		position: relative;
+		margin: 20px auto;
+		display: block;
+		height: 14px;
+		width: 14px;
+	}
+	.point::before {
+		position: absolute;
+		left: 3px;
+		top: 3px;
+		content: "";
+		height: 8px;
+		width: 8px;
+		background-color: $white;
+		border-radius: 100%;
+		opacity: .7;
+	}
+	.point.active::before,
+	.point:hover::before {
+		left: 0;
+		top: 0;
+		height: 14px;
+		width: 14px;
+		border: 1px solid $white;
+		background: transparent;
+	}
+
 }
