@@ -2,53 +2,76 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-	var wrapper = document.getElementById('wrapper');
-	var delve = document.getElementById('delve');
+	var myScroll = {
+		
+		wrapper: document.getElementById('wrapper'),
 
-	delve.addEventListener('click', function(){
-		wrapper.style.top = '-100%';
-	});
+		delve: document.getElementById('delve'),
 
-	var mw_lock = false;
+		mouseWheelLock: false,
 
-	["transitionend", "webkitTransitionEnd", "mozTransitionEnd"].forEach(function(transition) {
+		mouseWheelEvent: (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel",
 
-		wrapper.addEventListener(transition, function(e){
-			mw_lock = false;
-		}, false);
+		run: function(delta){
 
-	});
+			var self = this;
 
-	var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel";
+			var y = parseFloat(self.wrapper.style.top) || 0;
 
-	window.addEventListener(mousewheelevt, function(e) {
+			if (self.mouseWheelLock === false){
 
-		var evt = window.event || e;
-		var delta = evt.detail? evt.detail*(-120) : evt.wheelDelta;
-
-		(function(){
-
-			var y = parseFloat(wrapper.style.top) || 0;
-
-			if (mw_lock === false){
-
-				mw_lock = true;
+				self.mouseWheelLock = true;
 
 				if (y <= 0 && !( y == 0 && delta > 0) && !( y <= -200 && delta < 0)){
 
-					wrapper.style.top = delta > 0 ? (y + 100) + '%' : (y - 100) + '%';
+					self.wrapper.style.top = delta > 0 ? (y + 100) + '%' : (y - 100) + '%';
 
 				} else {
 
-					mw_lock = false;
+					self.mouseWheelLock = false;
 
 				}
 
 			}
 
-		}());
+		},
 
+		normaliseMouseWheel: function(event){
 
-	});
+			var evt = window.event || event;
+			var delta = evt.detail? evt.detail*(-120) : evt.wheelDelta;
+
+			return delta;
+		},
+
+		init: function(){
+
+			var self = this;
+
+			self.delve.addEventListener('click', function(){
+				self.wrapper.style.top = '-100%';
+			});
+
+			["transitionend", "webkitTransitionEnd", "mozTransitionEnd"].forEach(function(transition){
+
+				self.wrapper.addEventListener(transition, function(e){
+					self.mouseWheelLock = false;
+				}, false);
+
+			});
+
+			window.addEventListener(self.mouseWheelEvent, function(e) {
+
+				var delta = self.normaliseMouseWheel();
+
+				self.run(delta);
+
+			});
+
+		}
+
+	};
+
+	myScroll.init();
 
 }, false);
