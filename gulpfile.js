@@ -2,11 +2,22 @@
 // generated on 2014-07-05 using generator-gulp-webapp 0.1.0
 
 var gulp = require('gulp');
+var sass = require('gulp-sass');
 
 // load plugins
 var $ = require('gulp-load-plugins')();
 
-gulp.task('styles', function () {
+gulp.task('sass', function () {
+    gulp.src('app/styles/main.scss')
+        .pipe(sass({
+            errLogToConsole: true,
+            includePaths: require('node-bourbon').includePaths
+        }))
+        .pipe(gulp.dest('app/styles'))
+        .pipe($.size());
+});
+
+gulp.task('styles', ['sass'], function () {
     return gulp.src('app/styles/main.css')
         .pipe($.autoprefixer('last 1 version'))
         .pipe(gulp.dest('.tmp/styles'))
@@ -68,7 +79,7 @@ gulp.task('clean', function () {
 
 gulp.task('build', ['html', 'images', 'fonts', 'extras']);
 
-gulp.task('default', ['clean'], function () {
+gulp.task('default', ['clean', 'watch'], function () {
     gulp.start('build');
 });
 
@@ -116,6 +127,7 @@ gulp.task('watch', ['connect', 'serve'], function () {
         server.changed(file.path);
     });
 
+    gulp.watch('app/styles/**/*.scss', ['sass']);
     gulp.watch('app/styles/**/*.css', ['styles']);
     gulp.watch('app/scripts/**/*.js', ['scripts']);
     gulp.watch('app/images/**/*', ['images']);

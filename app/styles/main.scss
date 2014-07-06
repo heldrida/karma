@@ -1,0 +1,83 @@
+@import 'fonts';
+@import 'bourbon';
+
+$light-grey: #3C3C3C;
+$dark-grey: #272727;
+$dark-yellow: #FFD600;
+$white: #efefef;
+
+$font-gothic: 'alternate_gothic_no2bt', Helvetica, sans-serif;
+
+@mixin font-size($value){
+	font-size: $value + px;
+	font-size: ($value / 10) + rem;
+}
+
+html {
+	font-size: 62.5%;
+}
+html, body {
+	height: 100%;
+	width: 100%;
+}
+#wrapper {
+	height: 300%;
+}
+.panel {
+
+	height: 33.333333%;
+
+	section {
+
+	}
+}
+.panel-a {
+	background-color: $light-grey;
+}
+.panel-b {
+	background-color: $dark-grey;
+	background-image: url(../images/bg-pattern.jpg);
+	background-repeat: repeat;
+}
+.panel-c {
+	background-color: $dark-yellow;
+}
+#logo {
+	padding: 30px 0;
+	text-align: center;
+}
+#logo img {
+	max-width: 316px;
+	width: auto;
+	height: auto;
+}
+button.play {
+	background: none;
+	border: none;
+	margin: 0 auto;
+	display: block;
+}
+.arrow {
+	background-image: url(../images/arrow.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 142px;
+	padding: 0 0 60px;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	@include transform(translateX(-71px) translateY(10px));
+}
+.arrow p {
+	@include font-size(12);
+	color: $white;
+	text-transform: uppercase;font-family: $font-gothic;
+}
+#foo {
+	font-family: $font-gothic;
+	@include font-size(40);
+	text-transform: uppercase;
+	letter-spacing: 0.6rem;
+	color: $dark-yellow;
+	@include transform(scale(1,1.6));
+}

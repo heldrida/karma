@@ -1,89 +1,80 @@
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
-}
+@font-face {
+  font-family: 'alternate_gothic_no2bt';
+  src: url('fonts/alternate_gothic_no2bt.eot');
+  src: local('☺'), url('fonts/alternate_gothic_no2bt.woff') format('woff'), url('fonts/alternate_gothic_no2bt.ttf') format('truetype'), url('fonts/alternate_gothic_no2bt.svg') format('svg');
+  font-weight: normal;
+  font-style: normal; }
 
-/* Space out content a bit */
-body {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
+html {
+  font-size: 62.5%; }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+html, body {
+  height: 100%;
+  width: 100%; }
 
-/* Custom page header */
-.header {
-    border-bottom: 1px solid #e5e5e5;
-}
+#wrapper {
+  height: 300%; }
 
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
-}
+.panel {
+  height: 33.33333%; }
 
-/* Custom page footer */
-.footer {
-    padding-top: 19px;
-    color: #777;
-    border-top: 1px solid #e5e5e5;
-}
+.panel-a {
+  background-color: #3C3C3C; }
 
-.container-narrow > hr {
-    margin: 30px 0;
-}
+.panel-b {
+  background-color: #272727;
+  background-image: url(../images/bg-pattern.jpg);
+  background-repeat: repeat; }
 
-/* Main marketing message and sign up button */
-.jumbotron {
-    text-align: center;
-    border-bottom: 1px solid #e5e5e5;
-}
+.panel-c {
+  background-color: #FFD600; }
 
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-}
+#logo {
+  padding: 30px 0;
+  text-align: center; }
 
-/* Supporting marketing content */
-.marketing {
-    margin: 40px 0;
-}
+#logo img {
+  max-width: 316px;
+  width: auto;
+  height: auto; }
 
-.marketing p + h4 {
-    margin-top: 28px;
-}
+button.play {
+  background: none;
+  border: none;
+  margin: 0 auto;
+  display: block; }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .container {
-        max-width: 730px;
-    }
+.arrow {
+  background-image: url(../images/arrow.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 142px;
+  padding: 0 0 60px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-71px) translateY(10px);
+  -moz-transform: translateX(-71px) translateY(10px);
+  -ms-transform: translateX(-71px) translateY(10px);
+  -o-transform: translateX(-71px) translateY(10px);
+  transform: translateX(-71px) translateY(10px); }
 
-    /* Remove the padding we set earlier */
-    .header,
-    .marketing,
-    .footer {
-        padding-left: 0;
-        padding-right: 0;
-    }
+.arrow p {
+  font-size: 12px;
+  font-size: 1.2rem;
+  color: #efefef;
+  text-transform: uppercase;
+  font-family: 'alternate_gothic_no2bt', Helvetica, sans-serif; }
 
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
-    }
-    
-    /* Remove the bottom border on the jumbotron for visual effect */
-    .jumbotron {
-        border-bottom: 0;
-    }
-}
+#foo {
+  font-family: 'alternate_gothic_no2bt', Helvetica, sans-serif;
+  font-size: 40px;
+  font-size: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6rem;
+  color: #FFD600;
+  -webkit-transform: scale(1, 1.6);
+  -moz-transform: scale(1, 1.6);
+  -ms-transform: scale(1, 1.6);
+  -o-transform: scale(1, 1.6);
+  transform: scale(1, 1.6); }
