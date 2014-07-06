@@ -171,8 +171,6 @@ button.play.playing {
 }
 
 /* WORLD KARMA */
-.panel-a {display: none} /* temp dev */
-
 #world-karma {
 	height: 100%;
 	padding: 0px 20px;
@@ -208,6 +206,17 @@ button.play.playing {
 	opacity: 0.94;
 }
 #map img {
+	top: 0;
+	left: 0;
 	width: 76%;
 	max-width: 757px;
+	position: absolute;
+	@include transition(all 1s);
+}	
+#map img.layer-1 {
+	z-index: 1;
+}
+#map img.layer-2 {
+	z-index: 2;
+	opacity: 0;
 }
