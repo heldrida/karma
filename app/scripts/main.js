@@ -19,7 +19,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	});
 
-	window.addEventListener('mousewheel', function(e) {
+	var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel";
+
+	window.addEventListener(mousewheelevt, function(e) {
+
+		var evt = window.event || e;
+		var delta = evt.detail? evt.detail*(-120) : evt.wheelDelta;
 
 		(function(){
 
@@ -29,9 +34,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 				mw_lock = true;
 
-				if (y <= 0 && !( y == 0 && e.wheelDelta > 0) && !( y <= -200 && e.wheelDelta < 0)){
+				if (y <= 0 && !( y == 0 && delta > 0) && !( y <= -200 && delta < 0)){
 
-					wrapper.style.top = e.wheelDelta > -1 ? (y + 100) + '%' : (y - 100) + '%';
+					wrapper.style.top = delta > 0 ? (y + 100) + '%' : (y - 100) + '%';
 
 				} else {
 
