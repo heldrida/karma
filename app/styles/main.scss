@@ -169,3 +169,45 @@ button.play.playing {
 #timeline.index2 .point::before {
 	background-color: #333;
 }
+
+/* WORLD KARMA */
+.panel-a {display: none} /* temp dev */
+
+#world-karma {
+	height: 100%;
+	padding: 0px 20px;
+	max-width: 980px;
+	margin: 0 auto;
+
+
+	h2 {
+		font-family: $font-gothic;
+		color: $dark-yellow;
+		font-size: 8.5rem;
+		line-height: 8.2rem;
+		font-weight: normal;
+		margin: 20px 0px;
+	}
+
+	.l-col p {
+		color: $white;
+		font-size: 1.5rem;
+		line-height: 2.1rem;
+		font-family: serif;
+	}
+	.r-col {
+		position: relative;
+	}
+
+}
+#map {
+	width: 200%;
+	position: absolute;
+	left: -50%;
+	top: 5rem;
+	opacity: 0.94;
+}
+#map img {
+	width: 76%;
+	max-width: 757px;
+}
