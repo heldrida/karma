@@ -47,6 +47,8 @@ html, body {
 	section {
 		height: 100%;
 		position: relative;
+		max-width: 1200px;
+		margin: 0 auto;
 	}
 }
 .panel-a {
@@ -100,10 +102,17 @@ button.play {
 	top: 50%;
 	left: 50%;
 	position: absolute;
+	z-index: 9;
 	@include transform(translateX(-53px) translateY(-53px));
 }
 button.play.playing {
 	opacity: 0;
+}
+#videoWrapper {
+	position: absolute;
+	z-index: 1;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 /* ARROW */
@@ -186,7 +195,10 @@ button.play.playing {
 		font-weight: normal;
 		margin: 20px 0px;
 	}
-
+	.l-col {
+		position: relative;
+		left: 58px;
+	}
 	.l-col p {
 		color: $white;
 		font-size: 1.5rem;
@@ -219,4 +231,28 @@ button.play.playing {
 #map img.layer-2 {
 	z-index: 2;
 	opacity: 0;
+}
+#world-nav {
+	width: 100%;
+	text-align: center;
+	
+	div {
+		text-align: center;
+	}
+	div p {
+		font-family: $font-gothic;
+		font-size: 1.6rem;
+		text-transform: uppercase;
+		color: $light-grey;
+	}
+	.circle {
+		width: 25px;
+		height: 25px;
+		border-width: 3px;
+		border-style: solid;
+		border-color: $light-grey;
+		border-radius: 50%;
+		display: inline-block;
+		content: " ";		
+	}
 }

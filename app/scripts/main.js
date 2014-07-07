@@ -251,6 +251,10 @@ document.addEventListener('DOMContentLoaded', function () {
 			videoWrapper.style.height = ratio * videoWidth + 'px';
 			videoWrapper.style.width = videoWidth + 'px';
 
+			videoWrapper.style.marginTop = (parseFloat(self.video.style.height) - parseFloat(videoWrapper.style.height)) / 2 + 'px';
+
+			console.log(videoWrapper.style.marginTop);
+
 		},
 
 		resizeVideo: function(){
