@@ -457,19 +457,69 @@ button#play.playing {
 
 /* TEAM K */
 #team-k {
-	
+	width: 257px;
+	height: 202px;
+	margin: 0 auto;
+	position: relative;
 }
 .tk {
 
 	img {
 		width: 100%;
 		height: auto;
+		position: absolute;
+		top: 0;
+		left: 0;
 	}
 
 }
-.team-k-k {
+.panel-c {
 
-}
-.team-k-team {
+	h3 {
+		font-family: $font-gothic;
+		font-size: 4rem;
+	}
 
+	ul {
+		width: 100%;
+		display: block;
+		margin: 0 auto;
+
+		li {
+			width: 33.333%;
+			float: left;
+			text-align: center;
+			list-style: none;
+
+			* {
+				margin: 0;
+				padding: 0 0 10px;
+				display: inline-block;
+				width: 75%;
+				font-weight: normal;
+			}				
+			h4 {
+				font-size: 3.2rem;
+				line-height: 4rem;
+				font-family: $font-gothic;
+				color: $dark-grey;
+				text-transform: uppercase;
+			}
+			p.stitle {
+				font-size: 3rem !important;
+				line-height: 3rem;
+				font-family: $font-gothic;
+				color: $white;
+				font-size: inherit;
+			}
+			p {
+				font-family: serif;
+				font-size: 1.6rem;
+				line-height: 2.5rem;
+				padding-right: 20px;
+				padding-left: 20px;
+
+			}
+		}
+	}
 }

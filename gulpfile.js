@@ -3,6 +3,7 @@
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var plumber = require('gulp-plumber');
 
 // load plugins
 var $ = require('gulp-load-plugins')();
@@ -10,6 +11,7 @@ var gutil = require('gulp-load-utils')(['log']);
 
 gulp.task('sass', function () {
     gulp.src('app/styles/main.scss')
+        .pipe(plumber())
         .pipe(sass({
             errLogToConsole: true,
             includePaths: require('node-bourbon').includePaths

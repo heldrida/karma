@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function () {
 						self.video.className += 'ready';
 
 						self.playerApi.addEvent('finish', self.reset.bind(self));
-					
+
 					});
 
 				}
@@ -248,11 +248,17 @@ document.addEventListener('DOMContentLoaded', function () {
 		},
 
 		reset: function(){
-
+			console.log("video reset()!");
 			var self = this;
-			self.playBtn.className = self.playBtn.className.replace('playing', '');
+
 			self.iframe.className = self.iframe.className.replace('show', '');
-			self.playerApi.api('unload');
+
+			setTimeout(function(){
+
+				self.playBtn.className = self.playBtn.className.replace('playing', '');
+				self.playerApi.api('unload');
+
+			}, 1000);
 
 		},
 

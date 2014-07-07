@@ -548,9 +548,52 @@ button#play.playing {
     opacity: 0; } }
 
 /* TEAM K */
+#team-k {
+  width: 257px;
+  height: 202px;
+  margin: 0 auto;
+  position: relative; }
 
 .tk img {
   width: 100%;
-  height: auto; }
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0; }
 
-
+.panel-c h3 {
+  font-family: 'alternate_gothic_no2bt', Helvetica, sans-serif;
+  font-size: 4rem; }
+.panel-c ul {
+  width: 100%;
+  display: block;
+  margin: 0 auto; }
+  .panel-c ul li {
+    width: 33.333%;
+    float: left;
+    text-align: center;
+    list-style: none; }
+    .panel-c ul li * {
+      margin: 0;
+      padding: 0 0 10px;
+      display: inline-block;
+      width: 75%;
+      font-weight: normal; }
+    .panel-c ul li h4 {
+      font-size: 3.2rem;
+      line-height: 4rem;
+      font-family: 'alternate_gothic_no2bt', Helvetica, sans-serif;
+      color: #272727;
+      text-transform: uppercase; }
+    .panel-c ul li p.stitle {
+      font-size: 3rem !important;
+      line-height: 3rem;
+      font-family: 'alternate_gothic_no2bt', Helvetica, sans-serif;
+      color: #efefef;
+      font-size: inherit; }
+    .panel-c ul li p {
+      font-family: serif;
+      font-size: 1.6rem;
+      line-height: 2.5rem;
+      padding-right: 20px;
+      padding-left: 20px; }
