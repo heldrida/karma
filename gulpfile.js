@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 
 // load plugins
 var $ = require('gulp-load-plugins')();
+var gutil = require('gulp-load-utils')(['log']);
 
 gulp.task('sass', function () {
     gulp.src('app/styles/main.scss')
@@ -36,6 +37,7 @@ gulp.task('html', ['styles', 'scripts'], function () {
     var cssFilter = $.filter('**/*.css');
 
     return gulp.src('app/*.html')
+        .pipe($.useref.assets().on("error", gutil.log))
         .pipe($.useref.assets({searchPath: '{.tmp,app}'}))
         .pipe(jsFilter)
         .pipe($.uglify())

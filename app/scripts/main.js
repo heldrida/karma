@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		mouseWheelLock: false,
 
-		mouseWheelEvent: (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel",
+		mouseWheelEvent: (/Firefox/i.test(navigator.userAgent)) ? 'DOMMouseScroll' : 'mousewheel',
 
 		queue: [],
 
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 				self.mouseWheelLock = true;
 
-				if (y <= 0 && !( y == 0 && delta > 0) && !( y <= -200 && delta < 0)){
+				if (y <= 0 && !( y === 0 && delta > 0) && !( y <= -200 && delta < 0)){
 
 					self.wrapper.style.top = delta > 0 ? (y + 100) + '%' : (y - 100) + '%';
 
@@ -133,9 +133,9 @@ document.addEventListener('DOMContentLoaded', function () {
 				self.wrapper.style.top = '-100%';
 			});
 
-			["transitionend", "webkitTransitionEnd", "mozTransitionEnd"].forEach(function(transition){
+			['transitionend', 'webkitTransitionEnd', 'mozTransitionEnd'].forEach(function(transition){
 
-				self.wrapper.addEventListener(transition, function(e){
+				self.wrapper.addEventListener(transition, function(){
 					self.mouseWheelLock = false;
 					self.setIndex();
 					self.setTimeline();
@@ -153,13 +153,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			});
 
+			var setMyTimelineEvent = function(){
+
+				self.wrapper.style.top = parseFloat(this.getAttribute('data-index') * -100) + '%';
+
+			};
+
 			for (var i = 0; i < self.timelinePoints.length; i++){
 
-				self.timelinePoints.item(i).addEventListener('click', function(e){
-
-					self.wrapper.style.top = parseFloat(this.getAttribute('data-index') * -100) + '%';
-
-				});
+				self.timelinePoints.item(i).addEventListener('click', setMyTimelineEvent);
 
 			}
 
@@ -181,10 +183,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			var self = this;
 
-			var player = $f(self.iframe);
+			self.iframe.addEventListener('ready', function(){
 
-			player.addEvent('ready', function() {
-			   player.addEvent('finish', self.reset.bind(self));
+				if (typeof $f !== 'undefined') {
+
+					var player = $f(self.iframe);
+
+					player.addEvent('ready', function() {
+					   player.addEvent('finish', self.reset.bind(self));
+					});
+
+				}
+
 			});
 
 		},
@@ -192,10 +202,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		setSrc: function(){
 
 			var self = this;
+			
+			self.listenVimeoApi();
 
 			self.iframe.src = self.iframe.getAttribute('data-src');
-
-			self.listenVimeoApi();
 
 		},
 
@@ -265,8 +275,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		  el = (typeof el === 'string') ? document.querySelector(el) : el;
 
 		  var styles = window.getComputedStyle(el);
-		  var margin = parseFloat(styles['marginTop']) +
-		               parseFloat(styles['marginBottom']);
+		  var margin = parseFloat(styles.marginTop) +
+		               parseFloat(styles.marginBottom);
 
 		  return Math.ceil(el.offsetHeight + margin);
 
