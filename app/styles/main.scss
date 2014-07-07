@@ -25,6 +25,12 @@ html, body {
 	width: 100%;
 	overflow: hidden;
 }
+#wrapper {
+	visibility: hidden;
+}
+body.loaded #wrapper {
+	visibility: visible;	
+}
 .clickable {
 	cursor: pointer;
 	@include transition(opacity 0.4s ease-in-out);
@@ -144,11 +150,12 @@ button#play.playing {
 
 /* TIMELINE */
 #timeline {
-	@include transform(translateY(-50%));
 	position: absolute;
 	z-index: 3;
-	right: 35px;
+	right: -100px;
 	top: 50%;
+	@include transition(all 1s ease);
+	@include transform(translateY(-50%) skew(-30deg));
 
 	.point {
 		position: relative;
@@ -177,6 +184,10 @@ button#play.playing {
 		background: transparent;
 	}
 
+}
+.loaded #timeline {
+	right: 35px;
+	@include transform(skew(0deg));
 }
 #timeline.index2 .point::before {
 	@include transition(all 2s linear);
@@ -286,7 +297,47 @@ button#play.playing {
 
 	}
 
-}	
+}
+
+/* PRELOADER */
+#preloader {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+	top: 0;
+	left: 0;
+	@include transition(all 1s ease);
+
+	.top {
+		z-index: 1;
+		text-align: center;
+		position: relative;		
+		margin: 0 auto;
+
+		p {
+			font-family: $font-gothic;
+			color: $dark-yellow;
+			font-size: 10rem;
+			text-transform: uppercase;
+			margin: 0;
+			padding: 0;
+		}
+	}
+
+	.bg {
+		background-color: $dark-grey;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+}
+.loaded #preloader .top {
+	display: none;
+}
 
 /* ACTIVE CLASS ANIMATIONS */
 #logo,
@@ -295,7 +346,7 @@ button#play.playing {
 	@include transition(all 1.4s ease-out);
 }
 #logo {
-	@include transform(translateY(-300px));
+	@include transform(translateY(-300px) skew(20deg));
 }
 .active #logo {
 	@include transform(translateY(0px));
@@ -306,6 +357,10 @@ button#play.playing {
 }
 .active #delve {
 	opacity: 1;
+}
+.active #delve:hover {
+	opacity: 0.4 !important;
+	@include transition(all .4s ease-out !important);
 }
 .ready #play {
 	opacity: 1;
@@ -363,6 +418,41 @@ button#play.playing {
 }
 .active #world-nav > div {
 	opacity: 1;
+}
+
+/* KEYFRAME ANIMATIONS */
+.preloading {
+  @include animation-name(fadeIn);
+  @include animation-duration(1.2s);
+  @include animation-timing-function(ease);
+  @include animation-iteration-count(infinite);
+}
+@include keyframes(fadeIn) {
+  from {
+  	opacity: 0.8;
+    @include transform(scale(0.9) perspective( 600px ) rotateX( 20deg ));
+  }
+  to {
+	opacity: 1;
+    @include transform(scale(1));
+  }
+}
+.zoomOut {
+  @include animation-name(zoomOut);
+  @include animation-duration(1s);
+  @include animation-timing-function(ease);
+}
+@include keyframes(zoomOut) {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+	@include transform(scale3d(.3, .3, .3) perspective( 600px ) rotateX( 90deg ));
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* TEAM K */

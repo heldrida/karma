@@ -345,6 +345,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		},
 
+		setVerticalPreloader: function(){
+
+			var self = this;
+
+			var containerHeight = self.getAbsoluteHeight(document.getElementById('preloader'));
+			var el = document.querySelector('#preloader .top');
+			var h = self.getAbsoluteHeight(el);
+
+			el.style.marginTop = (containerHeight - h) / 2 + 'px';
+
+		},
+
 		init: function(){
 
 			var self = this;
@@ -354,6 +366,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			window.addEventListener('resize', function(){
 				self.resizeVideo();
 				self.setVerticalWorldKarma();
+				self.setVerticalPreloader();
 			});
 
 			window.dispatchEvent(new Event('resize'));
@@ -363,5 +376,74 @@ document.addEventListener('DOMContentLoaded', function () {
 	};
 
 	resizeManager.init();
+
+	var imagePreloader = {
+
+		preloader: document.getElementById('preloader'),
+		
+		container: document.querySelector('#wrapper'),
+
+		body: document.getElementsByTagName('body')[0],
+
+		removePreloaderAnim: function(){
+
+			console.log('removePreloaderAnim()');
+
+			var self = this;
+
+			var top = document.querySelectorAll('#preloader .top')[0];
+
+			setTimeout(function(){
+
+				top.className = top.className.replace('preloading');
+				top.className += ' ' + 'zoomOut';
+
+				setTimeout(function(){
+
+					self.preloader.style.opacity = 0;
+
+					setTimeout(function(){
+						self.preloader.style.display = 'none';
+					}, 800);
+
+					self.showContent();
+
+				}, 1000);
+
+			}, 3000);
+
+		},
+
+		showContent: function(){
+
+			var self = this;
+
+			self.body.className += ' loaded';
+			self.setDefaultActivePanel();
+
+		},
+
+		setDefaultActivePanel: function(){
+
+			document.getElementsByClassName('panel')[0].className += ' ' + 'active';
+
+		},
+
+		run: function(){
+
+			var self = this;
+
+			imagesLoaded(self.container, function(instance) {
+
+				console.log('all images are loaded');
+				self.removePreloaderAnim();
+
+			});
+
+		}
+
+	};
+
+	imagePreloader.run();
 
 }, false);

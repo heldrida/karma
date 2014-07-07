@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "pure": "~0.5.0",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "imagesloaded": "~3.1.8"
   },
   "devDependencies": {}
 }
