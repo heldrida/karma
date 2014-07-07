@@ -432,10 +432,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		run: function(){
 
 			var self = this;
+			var imagesLoaded = imagesLoaded || false;
 
-			imagesLoaded(self.container, function(instance) {
+			imagesLoaded(self.container, function() {
 
-				console.log('all images are loaded');
 				self.removePreloaderAnim();
 
 			});
