@@ -307,15 +307,15 @@ button#play.playing {
 .active #delve {
 	opacity: 1;
 }
-.active #play {
+.ready #play {
 	opacity: 1;
 }
-.active #play:hover {
+.ready #play:hover {
 	@include transition(all .4s ease-out !important);
 	@include transition-delay(0s !important);
 	opacity: 0.4;
 }
-.active #play.playing:hover {
+.ready #play.playing:hover {
 	opacity: 0;
 }
 .active #logo,

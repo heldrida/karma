@@ -303,10 +303,10 @@ button#play.playing {
 .active #delve {
   opacity: 1; }
 
-.active #play {
+.ready #play {
   opacity: 1; }
 
-.active #play:hover {
+.ready #play:hover {
   -webkit-transition: all 0.4s ease-out !important;
   -moz-transition: all 0.4s ease-out !important;
   transition: all 0.4s ease-out !important;
@@ -315,7 +315,7 @@ button#play.playing {
   transition-delay: 0s !important;
   opacity: 0.4; }
 
-.active #play.playing:hover {
+.ready #play.playing:hover {
   opacity: 0; }
 
 .active #logo, .active #delve {

@@ -194,12 +194,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			self.iframe.addEventListener('load', function(){
 
+				var $f = window.$f || undefined;
+
 				if (typeof $f !== 'undefined') {
 
 					self.playerApi = $f(self.iframe);
 
 					self.playerApi.addEvent('ready', function() {
-					   self.playerApi.addEvent('finish', self.reset.bind(self));
+
+						self.video.className += 'ready';
+
+						self.playerApi.addEvent('finish', self.reset.bind(self));
+					
 					});
 
 				}
@@ -225,13 +231,16 @@ document.addEventListener('DOMContentLoaded', function () {
 		showVideo: function(bool){
 
 			var self = this;
-			self.iframe.className += ' ' + 'show';
+
+			if (bool){
+
+				self.iframe.className += ' ' + 'show';
+
+			}
 
 		},
 
 		removePlayBtn: function(){
-			
-			console.log("removePlayBtn");
 
 			var self = this;
 			self.playBtn.className += ' ' + 'playing';
@@ -255,10 +264,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			self.playBtn.addEventListener('click', function(){
 				self.play();
-			});
-
-			self.playBtn.addEventListener('mouseover', function(e){
-				console.log("playBtrn mouse over");
 			});
 
 		}
