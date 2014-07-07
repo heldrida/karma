@@ -226,7 +226,6 @@ button.play.playing {
 	width: 76%;
 	max-width: 757px;
 	position: absolute;
-	@include transition(all 1s);
 }	
 #map img.layer-1 {
 	z-index: 1;
@@ -248,6 +247,7 @@ button.play.playing {
 	> div {
 		float: left;
 		width: 25%;
+		cursor: pointer;
 	}
 	div p {
 		font-family: $font-gothic;
@@ -263,6 +263,94 @@ button.play.playing {
 		border-color: $light-grey;
 		border-radius: 50%;
 		display: inline-block;
-		content: " ";		
+		content: " ";
+		@include transition(all .6s);
 	}
+	> div:hover {
+		
+		p {
+			color: $white;
+		}
+
+		.circle {
+			border-color: $dark-yellow !important;
+			background-color: $dark-yellow !important;
+		}
+
+	}
+
+}	
+
+/* ACTIVE CLASS ANIMATIONS */
+#logo,
+#delve,
+#play{
+	@include transition(all 1.4s ease-out);
+}
+#logo {
+	@include transform(translateY(-300px));
+}
+.active #logo {
+	@include transform(translateY(0px));
+}
+#delve,
+#play {
+	opacity: 0;
+}
+.active #delve {
+	opacity: 1;
+}
+.active #play {
+	opacity: 1;
+}
+.active #play:hover {
+	@include transition(all .4s ease-out !important);
+	@include transition-delay(0s !important);
+	opacity: 0.4 !important ;
+}
+.active #logo,
+.active #delve {
+	@include transition-delay(1s);
+}
+#map .layer-1 {
+	opacity: 0;
+	@include transform(scale(0.94));
+	@include transform-origin(center);
+}
+#map .layer-1,
+#map .layer-2 {
+	opacity: 0;
+	@include transition(all 0.9s linear);
+}
+.active #map .layer-1 {
+	opacity: 1;
+	@include transform(scale(1));
+	@include transition-delay(1s);
+}
+.active #map .layer-2 {
+	opacity: 1;
+	@include transition-delay(2s);
+}
+#world-karma h2,
+#world-karma p {
+	opacity: 0;
+	@include transition(all 1s linear);
+}
+.active #world-karma h2 {
+	opacity: 1;
+	@include transition-delay(0.2s);	
+}
+.active #world-karma p {
+	opacity: 1;
+	@include transition-delay(1.2s);
+}
+.active #world-nav p {
+	@include transition-delay(0);	
+}
+#world-nav > div {
+	opacity: 0;
+	@include transition(all 1s linear);
+}
+.active #world-nav > div {
+	opacity: 1;
 }

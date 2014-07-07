@@ -82,8 +82,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		},
 
-		resetQueue: function(){
+		activeClassPanelSetter: function(){
+			
+			var self = this;
 
+			var setter = function(){
+				
+				console.log('setter');
+
+				var elements = document.getElementsByClassName('panel');
+
+				for (var i = 0; i < elements.length; i++){
+
+					elements.item(i).className = elements.item(i).className.replace('active', '');
+
+					if (self.index === i){
+
+						elements.item(i).className += ' ' + 'active';
+
+					}
+
+				}
+
+
+			};
+
+			setter();
+
+		},
+
+		resetQueue: function(){
+			
 			var self = this;
 
 			for (var i = 0; i < self.queue.length; i++){
@@ -110,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					self.mouseWheelLock = false;
 					self.setIndex();
 					self.setTimeline();
+					self.activeClassPanelSetter();
 					self.resetQueue();
 				}, false);
 
@@ -254,8 +284,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			videoWrapper.style.width = videoWidth + 'px';
 
 			videoWrapper.style.marginTop = (parseFloat(self.video.style.height) - parseFloat(videoWrapper.style.height)) / 2 + 'px';
-
-			console.log(videoWrapper.style.marginTop);
 
 		},
 
