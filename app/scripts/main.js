@@ -228,6 +228,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		
 		playBtn: document.getElementById('play'),
 
+		worldKarma: document.getElementById('world-karma'),
+
 		getAbsoluteHeight: function(el) {
 
 		  el = (typeof el === 'string') ? document.querySelector(el) : el;
@@ -273,6 +275,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		},
 
+		setVerticalWorldKarma: function(){
+
+			var self = this;
+
+			var containerHeight = self.getAbsoluteHeight(document.getElementsByClassName('panel-b')[0]);
+			var c = document.querySelectorAll('#world-karma > div');
+			var h = 0;
+
+			for (var i = 0; i < c.length; i++){
+				
+				h += self.getAbsoluteHeight(c[i]);
+
+			}
+
+			self.worldKarma.style.marginTop = (containerHeight - h) / 2 + 'px';
+
+		},
+
 		init: function(){
 
 			var self = this;
@@ -281,7 +301,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			window.addEventListener('resize', function(){
 				self.resizeVideo();
+				self.setVerticalWorldKarma();
 			});
+
+			window.dispatchEvent(new Event('resize'));
 
 		}
 
