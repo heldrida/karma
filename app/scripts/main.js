@@ -432,7 +432,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		run: function(){
 
 			var self = this;
-			var imagesLoaded = imagesLoaded || false;
+			var imagesLoaded = window.imagesLoaded || false;
 
 			imagesLoaded(self.container, function() {
 
