@@ -105,7 +105,7 @@ button.play {
 	z-index: 9;
 	@include transform(translateX(-53px) translateY(-53px));
 }
-button.play.playing {
+button#play.playing {
 	opacity: 0;
 }
 #videoWrapper {
@@ -113,6 +113,13 @@ button.play.playing {
 	z-index: 1;
 	margin-left: auto;
 	margin-right: auto;
+}
+#vplayer {
+	visibility: hidden;
+	@include transition(all 1s linear);
+}
+#vplayer.show {
+	visibility: visible;
 }
 
 /* ARROW */
@@ -306,7 +313,10 @@ button.play.playing {
 .active #play:hover {
 	@include transition(all .4s ease-out !important);
 	@include transition-delay(0s !important);
-	opacity: 0.4 !important ;
+	opacity: 0.4;
+}
+.active #play.playing:hover {
+	opacity: 0;
 }
 .active #logo,
 .active #delve {

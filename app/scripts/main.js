@@ -135,12 +135,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			['transitionend', 'webkitTransitionEnd', 'mozTransitionEnd'].forEach(function(transition){
 
-				self.wrapper.addEventListener(transition, function(){
+				self.wrapper.addEventListener(transition, function(event){
+
+					if (self.wrapper !== event.target) {
+						return;
+					}
+
 					self.mouseWheelLock = false;
 					self.setIndex();
 					self.setTimeline();
 					self.activeClassPanelSetter();
+					//videoPlayer.reset();
 					self.resetQueue();
+
 				}, false);
 
 			});
@@ -177,20 +184,22 @@ document.addEventListener('DOMContentLoaded', function () {
 		
 		video: document.getElementById('video'),
 
-		iframe: document.querySelector('#videoWrapper iframe'),
+		iframe: document.getElementById('vplayer'),
+
+		playerApi: false,
 
 		listenVimeoApi: function(){
 
 			var self = this;
 
-			self.iframe.addEventListener('ready', function(){
+			self.iframe.addEventListener('load', function(){
 
 				if (typeof $f !== 'undefined') {
 
-					var player = $f(self.iframe);
+					self.playerApi = $f(self.iframe);
 
-					player.addEvent('ready', function() {
-					   player.addEvent('finish', self.reset.bind(self));
+					self.playerApi.addEvent('ready', function() {
+					   self.playerApi.addEvent('finish', self.reset.bind(self));
 					});
 
 				}
@@ -199,36 +208,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		},
 
-		setSrc: function(){
-
-			var self = this;
-			
-			self.listenVimeoApi();
-
-			self.iframe.src = self.iframe.getAttribute('data-src');
-
-		},
-
 		play: function(){
 
 			var self = this;
-
+			
 			self.removePlayBtn();
 
-			setTimeout(function(){
+			self.showVideo(true);
 
-				self.setSrc();
-				
-				myScroll.queue.push(self.reset.bind(self));
+			self.playerApi.api('play');
 
-			}, 800);
+			myScroll.queue.push(self.reset.bind(self));
+
+		},
+
+		showVideo: function(bool){
+
+			var self = this;
+			self.iframe.className += ' ' + 'show';
 
 		},
 
 		removePlayBtn: function(){
+			
+			console.log("removePlayBtn");
 
 			var self = this;
-
 			self.playBtn.className += ' ' + 'playing';
 
 		},
@@ -236,20 +241,24 @@ document.addEventListener('DOMContentLoaded', function () {
 		reset: function(){
 
 			var self = this;
-
 			self.playBtn.className = self.playBtn.className.replace('playing', '');
-			self.iframe.src = '';
+			self.iframe.className = self.iframe.className.replace('show', '');
+			self.playerApi.api('unload');
 
 		},
 
 		init: function(){
 
 			var self = this;
+			
+			self.listenVimeoApi();
 
 			self.playBtn.addEventListener('click', function(){
-
 				self.play();
+			});
 
+			self.playBtn.addEventListener('mouseover', function(e){
+				console.log("playBtrn mouse over");
 			});
 
 		}
