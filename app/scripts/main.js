@@ -87,8 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			var self = this;
 
 			var setter = function(){
-				
-				console.log('setter');
 
 				var elements = document.getElementsByClassName('panel');
 
@@ -363,6 +361,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		},
 
+		setVerticalTeamK: function(){
+
+			var self = this;
+
+			var containerHeight = self.getAbsoluteHeight(document.querySelector('.panel-c'));
+			var el = document.querySelector('#global-ops');
+			var h = self.getAbsoluteHeight(el);
+
+			el.style.marginTop = (containerHeight - h) / 2 + 'px';
+
+		},
+
 		init: function(){
 
 			var self = this;
@@ -373,6 +383,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				self.resizeVideo();
 				self.setVerticalWorldKarma();
 				self.setVerticalPreloader();
+				self.setVerticalTeamK();
 			});
 
 			window.dispatchEvent(new Event('resize'));
@@ -451,5 +462,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	};
 
 	imagePreloader.run();
+
 
 }, false);

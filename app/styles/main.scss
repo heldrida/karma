@@ -5,6 +5,7 @@
 $light-grey: #3C3C3C;
 $dark-grey: #272727;
 $dark-yellow: #FFD600;
+$lighest-grey: #888;
 $white: #efefef;
 
 /* FONTS VARS */
@@ -172,9 +173,8 @@ button#play.playing {
 		content: "";
 		height: 8px;
 		width: 8px;
-		background-color: $white;
+		background-color: $lighest-grey;
 		border-radius: 100%;
-		opacity: .7;
 	}
 	.point.active,
 	.point:hover {
@@ -455,11 +455,16 @@ button#play.playing {
   }
 }
 
-/* TEAM K */
+/* TEAM K GLOBAL OPERATIONS */
+#global-ops {
+	display: block;
+	overflow: hidden;
+}
 #team-k {
 	width: 257px;
 	height: 202px;
 	margin: 0 auto;
+	padding: 0 0 20px;
 	position: relative;
 }
 .tk {
@@ -475,15 +480,35 @@ button#play.playing {
 }
 .panel-c {
 
+	overflow: hidden;
+
+	* {
+		font-weight: normal;
+	}
+
 	h3 {
 		font-family: $font-gothic;
-		font-size: 4rem;
+		font-size: 7rem;
+		color: $dark-grey;
+		display: inline-block;
+		width: 100%;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+	}
+	p {
+		font-size: 1.6rem;
+		padding: 20px 0 80px;
+		margin: 0;
+		color: $light-grey;
+		text-align: center;
 	}
 
 	ul {
 		width: 100%;
 		display: block;
 		margin: 0 auto;
+		padding: 0;
 
 		li {
 			width: 33.333%;
@@ -496,10 +521,9 @@ button#play.playing {
 				padding: 0 0 10px;
 				display: inline-block;
 				width: 75%;
-				font-weight: normal;
 			}				
 			h4 {
-				font-size: 3.2rem;
+				font-size: 4rem;
 				line-height: 4rem;
 				font-family: $font-gothic;
 				color: $dark-grey;
@@ -522,4 +546,69 @@ button#play.playing {
 			}
 		}
 	}
+}
+
+/* TEAM K ANIMATIONS */
+#team-k,
+#global-ops h3,
+#global-ops > p,
+#global-ops ul li {
+	opacity: 0;
+	position: relative;
+	@include transition(all 1s ease);
+	@include transform(translateY(-20px));
+}
+#team-k .tk {
+	opacity: 0;
+	@include transition(all 0.8s ease);
+	@include transform(translateX(-50px));
+}
+.active {
+
+	#team-k {
+		opacity: 1;
+		@include transform(translateY(0px));
+		@include transition-delay(0s);
+
+		.tk:nth-child(1) {
+			opacity: 1;
+			@include transform(translateX(0px));
+			@include transition-delay(0.4s);
+		}
+		.tk:nth-child(2) {
+			opacity: 1;
+			@include transform(translateX(0px));
+			@include transition-delay(0.8s);
+		}
+
+	}
+	#global-ops h3 {
+		opacity: 1;
+		@include transform(translateY(0px));
+		@include transition-delay(1s);
+	}
+	#global-ops > p {
+		opacity: 1;
+		@include transform(translateY(0px));
+		@include transition-delay(1.4s);
+	}
+}
+.active #global-ops ul {
+
+	li:nth-child(1) {
+		opacity: 1;
+		@include transform(translateY(0px));
+		@include transition-delay(1.8s);
+	}
+	li:nth-child(2) {
+		opacity: 1;
+		@include transform(translateY(0px));
+		@include transition-delay(2s);	
+	}
+	li:nth-child(3) {
+		opacity: 1;
+		@include transform(translateY(0px));
+		@include transition-delay(2.4s);
+	}
+
 }
