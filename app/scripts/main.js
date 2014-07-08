@@ -145,7 +145,6 @@ document.addEventListener('DOMContentLoaded', function () {
 					self.setIndex();
 					self.setTimeline();
 					self.activeClassPanelSetter();
-					//videoPlayer.reset();
 					self.resetQueue();
 
 				}, false);
@@ -248,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		},
 
 		reset: function(){
-			console.log("video reset()!");
+
 			var self = this;
 
 			self.iframe.className = self.iframe.className.replace('show', '');
@@ -405,8 +404,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		body: document.getElementsByTagName('body')[0],
 
 		removePreloaderAnim: function(){
-
-			console.log('removePreloaderAnim()');
 
 			var self = this;
 
