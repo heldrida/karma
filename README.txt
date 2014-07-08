@@ -1,6 +1,5 @@
 
-	References:
+	Karma front end exercise:
+	-------------------------
 
-		Karma Timelapse Farringdon
-
-			http://vimeo.com/45649386
+	Vanilla js, css3 animations
