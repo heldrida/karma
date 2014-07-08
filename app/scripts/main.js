@@ -1,5 +1,7 @@
 'use strict';
 
+document.getElementById('preloader').style.opacity = 1;
+
 document.addEventListener('DOMContentLoaded', function () {
 
 	var myScroll = {
